@@ -26,9 +26,9 @@
         "editMode": false, // 編集メニューの表示/非表示
         "thumbnailWidth": "320"
     },
-    "DetailViewZoom": 15,
+    "DetailViewZoom": 18,
     "PoiViewZoom": {
-        "activity": 13,
+        "activity": 12,
         "JusoArtFes2023-ovpass": 16
     },
     "PoiView": {
