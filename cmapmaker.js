@@ -206,7 +206,7 @@ class CMapMaker {
 		if (tags.wikipedia !== undefined) {			// append wikipedia
 			message += modal_wikipedia.element();
 			winCont.modal_progress(100);
-			modal_wikipedia.make(tags).then(html => {
+			modal_wikipedia.make(tags,Conf.wikipedia.image).then(html => {
 				modal_wikipedia.set_dom(html);
 				winCont.modal_progress(0);
 			});

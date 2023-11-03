@@ -682,11 +682,6 @@
             ]
         },
         "wikipedia": {
-            "marker": "wikipedia.svg",
-            "api_": "wikipedia.org/w/api.php?format=json&action=query&prop=extracts%7Cimages&exintro=&explaintext=&titles=",
-            "api": "wikipedia.org/api/rest_v1/page/summary/",
-            "domain": "wikipedia.org",
-            "tag": "wikipedia",
             "overpass": [
                 "node[\"wikipedia\"][!\"highway\"][\"public_transport\"!=\"stop_position\"]",
                 "way[\"wikipedia\"][!\"highway\"][!\"railway\"]",

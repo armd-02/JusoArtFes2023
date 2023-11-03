@@ -20,7 +20,7 @@
                 34.65
             ]
         ],
-        "initZoom": 17,
+        "initZoom": 15,
         "maxZoom": 22,
         "zoomSnap": 0.5,
         "editMode": false, // 編集メニューの表示/非表示
@@ -60,6 +60,14 @@
     "static": {
         "mode": false,
         "osmjson": "./data/JusoArtFes2023.json"
+    },
+    "wikipedia": {
+        "marker": "wikipedia.svg",
+        "api_": "wikipedia.org/w/api.php?format=json&action=query&prop=extracts%7Cimages&exintro=&explaintext=&titles=",
+        "api": "wikipedia.org/api/rest_v1/page/summary/",
+        "domain": "wikipedia.org",
+        "tag": "wikipedia",
+        "image": false
     },
     // トップメニュー一覧
     "menu": [
