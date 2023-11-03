@@ -30,9 +30,10 @@ window.addEventListener("DOMContentLoaded", function () {
 	const fetchUrls = FILES.map(url => fetch(url).then(res => res.text()));
 	Promise.all(fetchUrls).then(texts => {
 		let basehtml = texts[0];											// Get Menu HTML
-		for (let i = 1; i <= 8; i++) {
+		for (let i = 1; i <= 7; i++) {
 			Conf = Object.assign(Conf, JSON5.parse(texts[i]));
 		};
+		Conf.osm = Object.assign(Conf.osm, JSON5.parse(texts[8]).osm);
 		Conf.category_keys = Object.keys(Conf.category);					// Make Conf.category_keys
 		Conf.category_subkeys = Object.keys(Conf.category_sub);				// Make Conf.category_subkeys
 		glot.data = Object.assign(glot.data, JSON5.parse(texts[9]));		// import glot data
