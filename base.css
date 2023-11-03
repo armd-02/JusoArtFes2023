@@ -17,7 +17,7 @@ header {
 body {
     font-family: "Tahoma";
     height: 100%;
-    background-color: #000000;
+    background-color: #ffffff;
     padding: 0px;
     margin: 0px;
     overflow: hidden;
@@ -74,6 +74,17 @@ li::before {
     background: green;
 }
 
+div.showcase {
+    overflow-x: scroll;
+    width: 100vw;
+    display: flex;
+    scrollbar-width: none;
+}
+
+div.showcase::-webkit-scrollbar {
+    display: none;
+}
+
 /* fade out */
 
 #fadeLayer {
@@ -88,17 +99,27 @@ li::before {
     z-index: 3000;
 }
 
-img.in_modal {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
 img.thumbnail {
+    margin: 4px auto !important;
     border: 4px solid #ffffff;
-    margin: 2em auto 2em auto;
     display: block;
     box-shadow: 2px 2px 2px rgb(0 0 0 / 60%);
+    cursor: zoom-in;
+    width: 50%;
+}
+
+img.slide {
+    background-image: url("./image/loading.gif");
+    background-size: cover;
+    height: 16vh;
+    max-width: 100% !important;
+    margin: 2px;
+    border: 2px solid #ffffff;
+    display: block;
+    box-shadow: 2px 2px 2px rgb(0 0 0 / 60%);
+    cursor: grab;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
 }
 
 img.normal {
@@ -106,8 +127,8 @@ img.normal {
     background-size: cover;
     float: left;
     padding: 4px !important;
-    height: 32px;
-    width: 32px;
+    height: 32px !important;
+    width: 32px !important;
     object-fit: contain;
 }
 
@@ -120,17 +141,6 @@ img.attention {
     width: 48px;
     object-fit: contain;
 }
-
-/*
-.attention {
-    display: flex;
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    top: -28px;
-    left: 12px;
-}
-*/
 
 img.w100 {
     width: 100%;
@@ -150,10 +160,8 @@ h2.zoom {
 }
 
 .menu {
-    color: white;
     margin: 2px 0px;
-    background-color: rgba(0, 48, 0, 0.4);
-    border: 0px;
+    border: 1px solid;
     width: initial !important;
     height: 100%;
 }
@@ -193,14 +201,14 @@ span.icon {
     white-space: nowrap;
 }
 
-span.icon_normal {
-    color: #ffffffee;
-    background: rgba(0, 0, 0, 0.5);
+span.normal {
+    color: #000000;
+    background: rgba(255, 255, 255, 0.3);
 }
 
-span.icon_attention {
-    color: #ffffff;
-    background: rgba(0, 0, 0, 0.6);
+span.attention {
+    color: #000000;
+    background: rgba(255, 255, 255, 0.95);
 }
 
 /* マーカーのフォントサイズ選択 */
@@ -218,10 +226,15 @@ span.fs-14 {
 
 /* button for select way color */
 
+.modal-backdrop.show {
+    opacity: 0;
+}
+
 .modal-dialog-fluid {
-    max-width: inherit !important;
-    max-height: 50% !important;
-    width: 80% !important;
+    max-width: 800px !important;
+    max-height: 98% !important;
+    width: 98%;
+    margin: auto !important;
 }
 
 .modal-body {
@@ -231,6 +244,10 @@ span.fs-14 {
 
 .leaflet-div-icon {
     border: 0px !important;
+}
+
+.leaflet-popup-content {
+    width: 30vw;
 }
 
 input[type="search"] {
@@ -270,8 +287,7 @@ tr.selected td {
     bottom: 0px;
 }
 
-.card-header,
-.card-body {
+.card-header, .card-body {
     padding: 0px !important;
 }
 
@@ -303,12 +319,6 @@ tr.selected td {
     height: 30px !important;
 }
 
-.modal-dialog-fluid {
-    max-width: inherit !important;
-    width: 98% !important;
-    margin-left: 8px !important;
-}
-
 .cursor-pointer {
     cursor: pointer;
 }
@@ -333,6 +343,24 @@ h5[aria-expanded="true"]:before {
     height: 18px;
     margin-right: 0px;
     vertical-align: middle;
+}
+
+#full_screen_image {
+    display: none;
+    background: RGBA(0, 0, 0, .8) no-repeat center;
+    background-image: url();
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    cursor: zoom-out;
+}
+
+#full_screen_image.isFullScreen {
+    display: block;
 }
 
 @keyframes rotation {
