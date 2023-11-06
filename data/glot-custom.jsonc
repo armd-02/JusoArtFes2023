@@ -48,7 +48,7 @@
 		"en": "Detail"
 	},
 	"act_actor": {
-		"ja": "【出演】",
+		"ja": "【出演/作家】",
 		"en": "Actor"
 	},
 	"act_datetime":{
@@ -64,7 +64,7 @@
 		"en": "Fee"
 	},
 	"act_reserve": {
-		"ja": "【予約】",
+		"ja": "【予約方法】",
 		"en": "Reserve"
 	},
 	"act_official_url": {

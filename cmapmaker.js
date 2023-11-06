@@ -70,7 +70,7 @@ class CMapMaker {
 	viewArea(targets) {			// Areaを表示させる
 		console.log(`viewArea: Start.`);
 		targets = targets[0] == "-" ? Conf.PoiView.targets : targets;	// '-'はすべて表示
-		let pois = poiCont.get_pois(targets);
+		let pois = poiCont.getPois(targets);
 		targets.forEach((target) => {
 			console.log("viewArea: " + target);
 			mapLibre.addLine({ "type": "FeatureCollection", "features": pois.geojson }, target);
@@ -144,12 +144,12 @@ class CMapMaker {
 					console.log("[success]cMapMaker: updateOsmPoi End.");
 					global_status.innerHTML = "";
 					resolve({ "update": true });
-				})/*.catch(() => {
+				}).catch(() => {
 					winCont.spinner(false);
 					console.log("[error]cMapMaker: updateOsmPoi end.");
 					global_status.innerHTML = "";
 					resolve({ "update": false });
-				})*/;
+				});
 			};
 		});
 
@@ -206,7 +206,7 @@ class CMapMaker {
 		if (tags.wikipedia !== undefined) {			// append wikipedia
 			message += modal_wikipedia.element();
 			winCont.modal_progress(100);
-			modal_wikipedia.make(tags,Conf.wikipedia.image).then(html => {
+			modal_wikipedia.make(tags, Conf.wikipedia.image).then(html => {
 				modal_wikipedia.set_dom(html);
 				winCont.modal_progress(0);
 			});
@@ -267,12 +267,11 @@ class CMapMaker {
 
 	download() {
 		const linkid = "temp_download";
-		let csv = "", link;
-		Conf.listTable.targets.forEach(target => { csv += basic.makeArray2CSV(poiCont.makeList(target)) });
+		let csv = basic.makeArray2CSV(poiCont.makeList(Conf.listTable.target));
 		let bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
 		let blob = new Blob([bom, csv], { 'type': 'text/csv' });
 
-		link = document.getElementById(linkid) ? document.getElementById(linkid) : document.createElement("a");
+		let link = document.getElementById(linkid) ? document.getElementById(linkid) : document.createElement("a");
 		link.id = linkid;
 		link.href = URL.createObjectURL(blob);
 		link.download = "my_data.csv";
@@ -293,20 +292,25 @@ class CMapMaker {
 				this.moveMapBusy = 2;
 				this.updateOsmPoi().then((status) => {
 					this.moveMapBusy = 0;
-					let targets = [listTable.getSelCategory()];
-					if (Conf.PoiView.update_mode == "all" || status.update) {
-						listTable.makeList();					// view all list
-						listTable.makeSelectList(Conf.listTable.category);
-						listTable.filterCategory(listTable.getSelCategory());
-						this.viewArea(targets);	// in targets
-						this.viewPoi(targets);	// in targets
-						this.makeImages()
-						resolve();
-					} else {
-						this.moveMapBusy = 0;
-						let bindMoveMapPromise = MoveMapPromise.bind(this);
-						bindMoveMapPromise(resolve, reject);	// 失敗時はリトライ(接続先はoverpass.jsで変更)
-					};
+					switch (status.update) {
+						case true:
+							this.moveMapBusy = 0;
+							let targets = [listTable.getSelCategory()];
+							if (Conf.PoiView.update_mode !== "") {		// 非連動以外は更新
+								listTable.makeList();					// view all list
+								listTable.makeSelectList(Conf.listTable.category)
+								listTable.filterCategory(listTable.getSelCategory())
+								this.viewArea(targets);	// in targets
+								this.viewPoi(targets);	// in targets
+								this.makeImages()
+							};
+							resolve();
+							break;
+						case false:
+							let bindMoveMapPromise = MoveMapPromise.bind(this);
+							bindMoveMapPromise(resolve, reject);	// 失敗時はリトライ(接続先はoverpass.jsで変更)
+							break;
+					}
 				})/*.catch(() => {
 					this.moveMapBusy = 0;
 					console.log("eventMoveMap: Reject");
@@ -350,7 +354,7 @@ class CMapMaker {
 	// EVENT: カテゴリ変更時のイベント
 	eventChangeCategory() {
 		let selcategory = listTable.getSelCategory();
-		let targets = (Conf.listTable.targets.indexOf("targets") > -1) ? [selcategory] : ["-"];
+		let targets = Conf.listTable.target == "targets" ? [selcategory] : ["-"];
 		listTable.filterCategory(selcategory);
 		if (Conf.PoiView.update_mode == "filter") { this.viewPoi(targets) };	// in targets
 		let catname = selcategory !== "-" ? `?category=${selcategory}` : "";

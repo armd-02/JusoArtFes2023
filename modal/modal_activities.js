@@ -217,7 +217,7 @@ class modal_Activities {
                             winCont.modal_close();
                             gSheet.get(Conf.google.AppScript).then(jsonp => {
                                 poiCont.setActdata(jsonp);
-                                let targets = (Conf.listTable.targets.indexOf("targets") > -1) ? [listTable.getSelCategory()] : ["-"];
+                                let targets = Conf.listTable.target == "targets" ? [listTable.getSelCategory()] : ["-"];
                                 cMapMaker.viewArea(targets);	// in targets
                                 cMapMaker.viewPoi(targets);	// in targets
                                 modal_activities.busy = false;

@@ -28,20 +28,19 @@
     },
     "DetailViewZoom": 18,
     "PoiViewZoom": {
-        "activity": 12,
-        "JusoArtFes2023-ovpass": 16
+        "activity": 12//,
+        //"JusoArtFes2023-ovpass": 14
     },
     "PoiView": {
         "targets": [
-            "activity"
+            "activity"//,
+            //"JusoArtFes2023-ovpass"
         ],
-        "update_mode": "all" // listTable更新時 all:全て / filter:絞り込み / "":非連動
+        "update_mode": "filter" // listTable更新時 all:全て / filter:絞り込み / "":非連動
     },
     "listTable": {
         "category": "activity", // カテゴリ選択 / activity:アクティビティリスト / tags:タグ
-        "targets": [ // target名:overpass名を表示 / activity:google sheetsを表示 / tags:osm poi種別名を表示
-            "activity"
-        ],
+        "target": "activity", // target名:overpass名を表示 / activity:google sheetsを表示 / tags:osm poi種別名を表示
         "playback": {
             "view": false,
             "zoomLevel": 15,
