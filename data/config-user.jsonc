@@ -9,15 +9,14 @@
             34.7205248
         ],
         "viewPitch": 40,
-        "maxbounds": "",
-        "_maxbounds": [
+        "maxbounds": [
             [
-                135.4,
-                34.8
+                135.45,
+                34.7052461
             ],
             [
-                135.55,
-                34.65
+                135.53,
+                34.76
             ]
         ],
         "initZoom": 15,
@@ -28,12 +27,12 @@
     },
     "DetailViewZoom": 18,
     "PoiViewZoom": {
-        "activity": 12//,
+        "activity": 12 //,
         //"JusoArtFes2023-ovpass": 14
     },
     "PoiView": {
         "targets": [
-            "activity"//,
+            "activity" //,
             //"JusoArtFes2023-ovpass"
         ],
         "update_mode": "filter" // listTable更新時 all:全て / filter:絞り込み / "":非連動
@@ -57,7 +56,7 @@
         "url": "./image/splash.png"
     },
     "static": {
-        "mode": false,
+        "mode": true,
         "osmjson": "./data/JusoArtFes2023.json"
     },
     "wikipedia": {
