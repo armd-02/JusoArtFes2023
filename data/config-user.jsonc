@@ -12,11 +12,11 @@
         "maxbounds": [
             [
                 135.45,
-                34.7052461
+                34.68146
             ],
             [
                 135.53,
-                34.76
+                34.75737
             ]
         ],
         "initZoom": 15,
@@ -27,7 +27,7 @@
     },
     "DetailViewZoom": 18,
     "PoiViewZoom": {
-        "activity": 12 //,
+        "activity": 12// ,
         //"JusoArtFes2023-ovpass": 14
     },
     "PoiView": {
@@ -108,12 +108,14 @@
         "openfirst": true,
         // 詳細モーダルの追加ボタン 
         "buttons": [
+            /*
             {
                 "btn_class": "btn btn-light border-secondary mr-2",
                 "code": "javascript:modal_activities.edit({form:'JusoArtFes2023'})",
                 "icon_class": "fas fa-plus",
                 "btn_glot_name": "add_activity"
             },
+            */
             {
                 "btn_class": "btn btn-light border-secondary",
                 "code": "javascript:cMapMaker.shareURL()",
