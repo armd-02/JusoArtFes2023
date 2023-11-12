@@ -22,6 +22,7 @@ class modal_Activities {
         xhr.send();
     };
 
+    // make activity detail list
     make(actlists) {
         let ymd = "YYYY/MM/DD";
         let tModal = document.createElement("div");
@@ -29,7 +30,7 @@ class modal_Activities {
         let result = "", newmode = "";
         let wikimq = [];
         template.innerHTML = this.html;
-        actlists.sort((a, b) => { return a.updatetime > b.updatetime ? -1 : 1 });   // sort by update.
+        actlists.sort((a, b) => { return a.updatetime < b.updatetime ? -1 : 1 });   // sort by update.
         result = modal_activities.make_activity_list(actlists);
         actlists.forEach((act, idx) => {
             let clone = template.querySelector("div.body").cloneNode(true);
