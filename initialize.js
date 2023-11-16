@@ -60,7 +60,7 @@ window.addEventListener("DOMContentLoaded", function () {
 			winCont.download(Conf.listTable.download);				// download view:true/false
 			cMapMaker.init();
 			cMapMaker.mode_change("map");							// initialize last_modetime
-			winCont.menu_make(Conf.menu, "main_menu");
+			winCont.menu_make(Conf.menu.main, "main_menu");
 			winCont.mouseDragScroll(images,cMapMaker.viewImage);	// set Drag Scroll on images
 			listTable.makeSelectList(Conf.listTable.category);		// Must be executed before eventMoveMap
 			glot.render();

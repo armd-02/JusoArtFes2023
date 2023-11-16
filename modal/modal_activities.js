@@ -42,8 +42,8 @@ class modal_Activities {
             head.innerHTML = act.title + ` <button type="button" class="btn-sm btn-light ml-1 pl-2 pr-2 pt-0 pb-0" onclick="cMapMaker.shareURL('${act.id}')">
             <i class="fas fa-clone"></i></button>`;
             head.setAttribute("id", act.id.replace("/", ""));
-            let edit = Conf.default.editMode ? `[<a href="javascript:modal_activities.edit({id:'${act.id}',form:'${newmode}'})">${glot.get("act_edit")}</a>]` : "";
-            let chtml = Conf.default.editMode ? `<div class="float-right">${glot.get("update")} ${updated}${edit}</div><br>` : "";
+            let edit = Conf.etc.editMode ? `[<a href="javascript:modal_activities.edit({id:'${act.id}',form:'${newmode}'})">${glot.get("act_edit")}</a>]` : "";
+            let chtml = Conf.etc.editMode ? `<div class="float-right">${glot.get("update")} ${updated}${edit}</div><br>` : "";
             switch (newmode) {
                 case "libc":
                     let mm = !parseInt(act.mm) ? "--" : ("00" + act.mm).substr(-2);
@@ -111,7 +111,7 @@ class modal_Activities {
             body.innerHTML = chtml;
             result += clone.outerHTML;
         });
-        wikimq.forEach(q => { basic.getWikiMediaImage(q[0], Conf.default.thumbnailWidth, q[1]) });        // WikiMedia Image 遅延読み込み
+        wikimq.forEach(q => { basic.getWikiMediaImage(q[0], Conf.etc.thumbnailWidth, q[1]) });        // WikiMedia Image 遅延読み込み
         tModal.remove();
         template.remove();
         return result;

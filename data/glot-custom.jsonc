@@ -51,11 +51,15 @@
 		"ja": "【出演/作家】",
 		"en": "Actor"
 	},
-	"act_datetime":{
+	"act_genre": {
+		"ja": "【ジャンル】",
+		"en": "Genre"
+	},
+	"act_datetime": {
 		"ja": "【開催日時】",
 		"en": "DateTime"
 	},
-	"act_enter":{
+	"act_enter": {
 		"ja": "【来場時】",
 		"en": "entering"
 	},

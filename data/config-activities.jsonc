@@ -30,6 +30,11 @@
                     "type": "textarea",
                     "gsheet": "actor"
                 },
+                "genre":{
+                    "glot": "act_genre",
+                    "type": "text",
+                    "gsheet": "genre"
+                },
                 "datetime": {
                     "glot": "act_datetime",
                     "type": "textarea",

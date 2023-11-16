@@ -1,15 +1,14 @@
 // Community Mapmaker Config
 // Change to "fooBar" Key
 {
-    "default": {
-        "tile_default": "OSMFJ", // タイル一覧は config-system.jsonc へ
-        "keep_viewCenter": false,
+    "map": {
+        "tileName": "OSMFJ", // タイル一覧は config-system.jsonc へ
         "viewCenter": [
             135.4822973,
             34.7205248
         ],
         "viewPitch": 40,
-        "maxbounds": [
+        "maxBounds": [
             [
                 135.45,
                 34.68146
@@ -21,25 +20,24 @@
         ],
         "initZoom": 15,
         "maxZoom": 22,
-        "zoomSnap": 0.5,
+        "modalZoom": 18 // モーダルダイアログ表示時のズームサイズ   
+    },
+    "view": {
+        "poiZoom": {
+            "activity": 8 // ,
+            //"JusoArtFes2023-ovpass": 14
+        },
+        "poiFilter": "filter" // listTable更新時 all:全て / filter:絞り込み / "":非連動
+    },
+    "etc": {
         "editMode": false, // 編集メニューの表示/非表示
-        "thumbnailWidth": "320"
-    },
-    "DetailViewZoom": 18,
-    "PoiViewZoom": {
-        "activity": 12// ,
-        //"JusoArtFes2023-ovpass": 14
-    },
-    "PoiView": {
-        "targets": [
-            "activity" //,
-            //"JusoArtFes2023-ovpass"
-        ],
-        "update_mode": "filter" // listTable更新時 all:全て / filter:絞り込み / "":非連動
+        "thumbnailWidth": "320",
+        "splashUrl": "./image/splash.png"
     },
     "listTable": {
         "category": "activity", // カテゴリ選択 / activity:アクティビティリスト / tags:タグ
-        "target": "activity", // target名:overpass名を表示 / activity:google sheetsを表示 / tags:osm poi種別名を表示
+        "target": "activity",   // target名:overpass名を表示 / activity:google sheetsを表示 / tags:osm poi種別名を表示
+        "allActs": true,        // true: 全てのactivityを常に表示 / false: 画面内のActivityのみ表示
         "playback": {
             "view": false,
             "zoomLevel": 15,
@@ -51,9 +49,6 @@
         "Analytics": "",
         "AppScript": "https://script.google.com/macros/s/AKfycbyG_iyPHfHe9-UCnhptkYvTo5vnZG3MxIXdgiYM-bhv2x58MCx91kqjsa4gPF-4OJtJ/exec",
         "targetName": "activity"
-    },
-    "splash": {
-        "url": "./image/splash.png"
     },
     "static": {
         "mode": true,
@@ -67,46 +62,46 @@
         "tag": "wikipedia",
         "image": false
     },
-    // トップメニュー一覧
-    "menu": [
-        {
-            "glot-model": "about",
-            "linkto": "https://yodogawaartnet.jimdofree.com/%E5%8D%81%E4%B8%89%E3%82%A2%E3%83%BC%E3%83%88%E3%83%95%E3%82%A7%E3%82%B9/%E3%83%95%E3%82%A7%E3%82%B92022%E4%B8%80%E8%A6%A7%E3%83%88%E3%83%83%E3%83%97/",
-            "divider": false
-        },
-        {
-            "glot-model": "licence_title",
-            "linkto": "javascript:cMapMaker.licence()",
-            "divider": false
-        },
-        {
-            "glot-model": "openstreetmap",
-            "linkto": "https://www.openstreetmap.org/about",
-            "divider": false
-        }
-    ],
-    // 詳細表示のモーダル設定
-    "detail_menu": [
-        {
-            "glot-model": "act_add",
-            "linkto": "javascript:modal_activities.edit({form:'JusoArtFes2023'})",
-            "divider": false
-        },
-        {
-            "glot-model": "osm_open",
-            "linkto": "javascript:winCont.osm_open(cMapMaker.open_osmid)",
-            "divider": false
-        },
-        {
-            "glot-model": "button_close",
-            "linkto": "javascript:winCont.modal_close()",
-            "divider": false
-        }
-    ],
-    "detail_view": {
-        // 詳細モーダルの一番上を開くかどうか
-        "openfirst": true,
-        // 詳細モーダルの追加ボタン 
+    "menu": {
+        // トップ画面のメニュー
+        "main": [
+            {
+                "glot-model": "about",
+                "linkto": "https://yodogawaartnet.jimdofree.com/%E5%8D%81%E4%B8%89%E3%82%A2%E3%83%BC%E3%83%88%E3%83%95%E3%82%A7%E3%82%B9/%E3%83%95%E3%82%A7%E3%82%B92022%E4%B8%80%E8%A6%A7%E3%83%88%E3%83%83%E3%83%97/",
+                "divider": false
+            },
+            {
+                "glot-model": "licence_title",
+                "linkto": "javascript:cMapMaker.licence()",
+                "divider": false
+            },
+            {
+                "glot-model": "openstreetmap",
+                "linkto": "https://www.openstreetmap.org/about",
+                "divider": false
+            }
+        ],
+        // 詳細表示のハンバーガーメニュー
+        "modal": [
+            /*
+            {
+                "glot-model": "act_add",
+                "linkto": "javascript:modal_activities.edit({form:'JusoArtFes2023'})",
+                "divider": false
+            },
+            */
+            {
+                "glot-model": "osm_open",
+                "linkto": "javascript:winCont.osm_open(cMapMaker.open_osmid)",
+                "divider": false
+            },
+            {
+                "glot-model": "button_close",
+                "linkto": "javascript:winCont.modal_close()",
+                "divider": false
+            }
+        ],
+        // 詳細表示の追加ボタン 
         "buttons": [
             /*
             {

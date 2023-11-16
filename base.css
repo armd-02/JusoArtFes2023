@@ -34,6 +34,10 @@ h5 {
 
 /* body dom */
 
+a {
+    overflow-wrap: break-word;
+}
+
 #container {
     flex-direction: column;
     width: 100%;
